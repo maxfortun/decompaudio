@@ -54,13 +54,10 @@ while read sample; do
       index=0
 	fi
 
-	#printf "%d $sample $sumDiffSq $index/$sampledSize\n" $mean
-	printf "%x\n" $mean
+	echo "$sample $mean $variance $deviation"
 
 done < <(cat $file)
 
-
-exit
 
 
 

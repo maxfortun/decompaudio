@@ -1,7 +1,8 @@
 #!/bin/bash
-file=$1
-if [ ! -f "$file" ]; then
+fileIn=$1
+fileOut=${2:-$1.png}
+if [ ! -f "$fileIn" ]; then
 	echo "Usage: $0 <file>"
 	exit
 fi
-gnuplot -p -e "set terminal pngcairo; set output '$file.png'; plot '$file' pt 0 with lines"
+gnuplot -p -e "set terminal pngcairo; set output '$fileOut'; plot '$fileIn' pt 0 with lines"
