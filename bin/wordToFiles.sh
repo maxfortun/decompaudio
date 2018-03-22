@@ -15,4 +15,5 @@ voices=$(say -v '?'|grep en_|awk '{ print $1 }')
 for voice in $voices; do
 	[ ! -f "$path/$word-$voice.aiff" ] && say --channels=$channels -v $voice -o "$path/$word-$voice.aiff" $word
 	[ ! -f "$path/$word-$voice.raw" ] && $SWD/aiff2raw.sh "$path/$word-$voice.aiff" "$path/$word-$voice.raw"
+	[ ! -f "$path/$word-$voice.dec" ] && $SWD/bin2dec.sh "$path/$word-$voice.raw" > "$path/$word-$voice.dec"
 done
