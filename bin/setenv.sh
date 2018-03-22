@@ -1,2 +1,5 @@
-export params="-c 1 -r 8k -b 8 -L -e unsigned -t raw"
+export channels=1
+export rate=8000
+export bits=8
+export soxParams="-c $channels -r $rate -b $bits -L -e unsigned -t raw"
 

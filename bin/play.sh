@@ -9,5 +9,5 @@ fi
 SWD=$(dirname $0)
 . $SWD/setenv.sh
 
-play $params $file
+play $soxParams $file
 
