@@ -26,10 +26,10 @@ int main( int argc, const char* argv[] )
 	while(!feof(fp)) {
 		size_t result = fread(buffer, sizeof(buffer[0]), BUFFER_SIZE, fp);
 		for(int i = 0; i < result; i++) {
-			unsigned char sample = buffer[i];
-			unsigned char factor = (unsigned char)((((float)sample / (float)last) + 0.005f) * 100.0f);
-			fwrite(&factor,sizeof(factor),1,stdout);
-			last = sample;
+			unsigned char factor = buffer[i];
+			unsigned char sample = ((float)last * ((float)factor/100.0f));
+			fwrite(&sample,sizeof(sample),1,stdout);
+			last = factor;
 		}
 	}
 
