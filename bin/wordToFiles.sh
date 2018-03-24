@@ -18,4 +18,6 @@ for voice in $voices; do
 	[ ! -f "$path/$word-$voice.dec" ] && $SWD/bin2dec.sh "$path/$word-$voice.raw" > "$path/$word-$voice.dec"
 	[ ! -f "$path/$word-$voice.png" ] && $SWD/plot.sh "$path/$word-$voice.dec" "$path/$word-$voice.png"
 	[ ! -f "$path/$word-$voice.trend" ] && $SWD/trend.sh "$path/$word-$voice.dec" > "$path/$word-$voice.trend"
+	[ ! -f "$path/$word-$voice.fac" ] && $SWD/../c/factor "$path/$word-$voice.raw" > "$path/$word-$voice.fac"
+	[ ! -f "$path/$word-$voice.refac" ] && $SWD/../c/refactor "$path/$word-$voice.fac" > "$path/$word-$voice.refac"
 done
