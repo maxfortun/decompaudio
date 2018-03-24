@@ -13,7 +13,8 @@ while read sample; do
 	allDelta=$(( allDelta + delta ))
 	
 	[ "$trend" = "$lastTrend" ] && trendDelta=$(( trendDelta + delta )) || trendDelta=$delta
-	echo "$last $sample $delta $trend $trendDelta $allDelta"
+	#echo "$last $sample $delta $trend $trendDelta $allDelta"
+	echo $(( 128 + delta ))
 	last=$sample
 	lastTrend=$trend
 done < <(cat $file)
