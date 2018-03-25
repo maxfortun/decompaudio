@@ -6,7 +6,7 @@ LDFLAGS =
 
 RM = /bin/rm -f
 
-OBJS = factor refactor
+OBJS = factor refactor store
 
 all: $(OBJS) 
 
