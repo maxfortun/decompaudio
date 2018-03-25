@@ -78,17 +78,30 @@ void initState(state_t *state, int argc, const char* argv[]) {
 	openInputStream(state);
 }
 
+void initStore(state_t *state) {
+	unsigned char buffer[256];
+	memset(buffer, 0, 256);
+	fwrite(&buffer, sizeof(buffer[0]), 256, state->fpStore); 
+}
+
 int main(int argc, const char* argv[]) {
 	if(argc < 2) {
 		fprintf(stderr, "Usage: %s <store> [input]\n", argv[0]);
 		fprintf(stderr, "Usage: cat <input> | %s <store>\n", argv[0]);
 		fprintf(stderr, "If input is not specified will read from stdin\n");
-		return 0;
+		return EINVAL;
 	}
 
 	state_t state;
 
 	initState(&state, argc, argv);
+	if(0 == state.storeSize) {
+		initStore(&state);
+	} else if(256 > state.storeSize) {
+		fprintf(stderr, "Invalid store size: %ld\n", state.storeSize);
+		closeState(&state);
+		exit(1);
+	}
 
 	unsigned char buffer[BUFFER_SIZE];
 	
